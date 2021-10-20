@@ -1,8 +1,8 @@
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested, IsDate } from "class-validator";
-import { CategoryOnProduct } from "../../categoryOnProduct/base/CategoryOnProduct";
+import { IsString, IsOptional, IsDate, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
+import { Product } from "../../product/base/Product";
 @ObjectType()
 class ProductCategory {
   @ApiProperty({
@@ -15,15 +15,6 @@ class ProductCategory {
     nullable: true,
   })
   categoryName!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => [CategoryOnProduct],
-  })
-  @ValidateNested()
-  @Type(() => CategoryOnProduct)
-  @IsOptional()
-  categoryOnProducts?: Array<CategoryOnProduct>;
 
   @ApiProperty({
     required: true,
@@ -40,6 +31,15 @@ class ProductCategory {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Product],
+  })
+  @ValidateNested()
+  @Type(() => Product)
+  @IsOptional()
+  products?: Array<Product>;
 
   @ApiProperty({
     required: true,

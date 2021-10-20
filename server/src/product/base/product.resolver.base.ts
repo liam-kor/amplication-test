@@ -14,8 +14,8 @@ import { DeleteProductArgs } from "./DeleteProductArgs";
 import { ProductFindManyArgs } from "./ProductFindManyArgs";
 import { ProductFindUniqueArgs } from "./ProductFindUniqueArgs";
 import { Product } from "./Product";
-import { CategoryOnProductFindManyArgs } from "../../categoryOnProduct/base/CategoryOnProductFindManyArgs";
-import { CategoryOnProduct } from "../../categoryOnProduct/base/CategoryOnProduct";
+import { ProductCategoryFindManyArgs } from "../../productCategory/base/ProductCategoryFindManyArgs";
+import { ProductCategory } from "../../productCategory/base/ProductCategory";
 import { ProductService } from "../product.service";
 
 @graphql.Resolver(() => Product)
@@ -195,24 +195,24 @@ export class ProductResolverBase {
     }
   }
 
-  @graphql.ResolveField(() => [CategoryOnProduct])
+  @graphql.ResolveField(() => [ProductCategory])
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "read",
     possession: "any",
   })
-  async categoryOnProducts(
+  async categories(
     @graphql.Parent() parent: Product,
-    @graphql.Args() args: CategoryOnProductFindManyArgs,
+    @graphql.Args() args: ProductCategoryFindManyArgs,
     @gqlUserRoles.UserRoles() userRoles: string[]
-  ): Promise<CategoryOnProduct[]> {
+  ): Promise<ProductCategory[]> {
     const permission = this.rolesBuilder.permission({
       role: userRoles,
       action: "read",
       possession: "any",
-      resource: "CategoryOnProduct",
+      resource: "ProductCategory",
     });
-    const results = await this.service.findCategoryOnProducts(parent.id, args);
+    const results = await this.service.findCategories(parent.id, args);
 
     if (!results) {
       return [];

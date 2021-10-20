@@ -21,10 +21,6 @@ import { ProductCategoryList } from "./productCategory/ProductCategoryList";
 import { ProductCategoryCreate } from "./productCategory/ProductCategoryCreate";
 import { ProductCategoryEdit } from "./productCategory/ProductCategoryEdit";
 import { ProductCategoryShow } from "./productCategory/ProductCategoryShow";
-import { CategoryOnProductList } from "./categoryOnProduct/CategoryOnProductList";
-import { CategoryOnProductCreate } from "./categoryOnProduct/CategoryOnProductCreate";
-import { CategoryOnProductEdit } from "./categoryOnProduct/CategoryOnProductEdit";
-import { CategoryOnProductShow } from "./categoryOnProduct/CategoryOnProductShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -78,13 +74,6 @@ const App = (): React.ReactElement => {
           edit={ProductCategoryEdit}
           create={ProductCategoryCreate}
           show={ProductCategoryShow}
-        />
-        <Resource
-          name="CategoryOnProduct"
-          list={CategoryOnProductList}
-          edit={CategoryOnProductEdit}
-          create={CategoryOnProductCreate}
-          show={CategoryOnProductShow}
         />
       </Admin>
     </div>
