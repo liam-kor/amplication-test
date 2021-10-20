@@ -13,6 +13,18 @@ import { PostList } from "./post/PostList";
 import { PostCreate } from "./post/PostCreate";
 import { PostEdit } from "./post/PostEdit";
 import { PostShow } from "./post/PostShow";
+import { ProductList } from "./product/ProductList";
+import { ProductCreate } from "./product/ProductCreate";
+import { ProductEdit } from "./product/ProductEdit";
+import { ProductShow } from "./product/ProductShow";
+import { ProductCategoryList } from "./productCategory/ProductCategoryList";
+import { ProductCategoryCreate } from "./productCategory/ProductCategoryCreate";
+import { ProductCategoryEdit } from "./productCategory/ProductCategoryEdit";
+import { ProductCategoryShow } from "./productCategory/ProductCategoryShow";
+import { CategoryOnProductList } from "./categoryOnProduct/CategoryOnProductList";
+import { CategoryOnProductCreate } from "./categoryOnProduct/CategoryOnProductCreate";
+import { CategoryOnProductEdit } from "./categoryOnProduct/CategoryOnProductEdit";
+import { CategoryOnProductShow } from "./categoryOnProduct/CategoryOnProductShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -52,6 +64,27 @@ const App = (): React.ReactElement => {
           edit={PostEdit}
           create={PostCreate}
           show={PostShow}
+        />
+        <Resource
+          name="Product"
+          list={ProductList}
+          edit={ProductEdit}
+          create={ProductCreate}
+          show={ProductShow}
+        />
+        <Resource
+          name="ProductCategory"
+          list={ProductCategoryList}
+          edit={ProductCategoryEdit}
+          create={ProductCategoryCreate}
+          show={ProductCategoryShow}
+        />
+        <Resource
+          name="CategoryOnProduct"
+          list={CategoryOnProductList}
+          edit={CategoryOnProductEdit}
+          create={CategoryOnProductCreate}
+          show={CategoryOnProductShow}
         />
       </Admin>
     </div>

@@ -25,3 +25,29 @@ model Post {
   title     String?
   updatedAt DateTime @updatedAt
 }
+
+model Product {
+  categoryOnProducts CategoryOnProduct[]
+  createdAt          DateTime            @default(now())
+  id                 String              @id @default(cuid())
+  productName        String?
+  updatedAt          DateTime            @updatedAt
+}
+
+model ProductCategory {
+  categoryName       String?
+  categoryOnProducts CategoryOnProduct[]
+  createdAt          DateTime            @default(now())
+  id                 String              @id @default(cuid())
+  updatedAt          DateTime            @updatedAt
+}
+
+model CategoryOnProduct {
+  category   ProductCategory? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+  createdAt  DateTime         @default(now())
+  id         String           @id @default(cuid())
+  product    Product?         @relation(fields: [productId], references: [id])
+  productId  String?
+  updatedAt  DateTime         @updatedAt
+}

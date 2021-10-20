@@ -1,6 +1,9 @@
 import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
 import { PostModule } from "./post/post.module";
+import { ProductModule } from "./product/product.module";
+import { ProductCategoryModule } from "./productCategory/productCategory.module";
+import { CategoryOnProductModule } from "./categoryOnProduct/categoryOnProduct.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -15,6 +18,9 @@ import { GraphQLModule } from "@nestjs/graphql";
   imports: [
     UserModule,
     PostModule,
+    ProductModule,
+    ProductCategoryModule,
+    CategoryOnProductModule,
     ACLModule,
     AuthModule,
     SecretsManagerModule,
