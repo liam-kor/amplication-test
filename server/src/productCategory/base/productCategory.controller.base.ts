@@ -16,8 +16,8 @@ import { ProductCategoryFindManyArgs } from "./ProductCategoryFindManyArgs";
 import { ProductCategoryUpdateInput } from "./ProductCategoryUpdateInput";
 import { ProductCategory } from "./ProductCategory";
 import { Post } from "../../post/base/Post";
-import { CategoryOnProductWhereInput } from "../../categoryOnProduct/base/CategoryOnProductWhereInput";
-import { CategoryOnProduct } from "../../categoryOnProduct/base/CategoryOnProduct";
+import { ProductWhereInput } from "../../product/base/ProductWhereInput";
+import { Product } from "../../product/base/Product";
 @swagger.ApiBearerAuth()
 export class ProductCategoryControllerBase {
   constructor(
@@ -255,47 +255,35 @@ export class ProductCategoryControllerBase {
     defaultAuthGuard.DefaultAuthGuard,
     nestAccessControl.ACGuard
   )
-  @common.Get("/:id/categoryOnProducts")
+  @common.Get("/:id/products")
   @nestAccessControl.UseRoles({
     resource: "ProductCategory",
     action: "read",
     possession: "any",
   })
   @swagger.ApiQuery({
-    type: () => CategoryOnProductWhereInput,
+    type: () => ProductWhereInput,
     style: "deepObject",
     explode: true,
   })
-  async findManyCategoryOnProducts(
+  async findManyProducts(
     @common.Req() request: Request,
     @common.Param() params: ProductCategoryWhereUniqueInput,
     @nestAccessControl.UserRoles() userRoles: string[]
-  ): Promise<CategoryOnProduct[]> {
-    const query: CategoryOnProductWhereInput = request.query;
+  ): Promise<Product[]> {
+    const query: ProductWhereInput = request.query;
     const permission = this.rolesBuilder.permission({
       role: userRoles,
       action: "read",
       possession: "any",
-      resource: "CategoryOnProduct",
+      resource: "Product",
     });
-    const results = await this.service.findCategoryOnProducts(params.id, {
+    const results = await this.service.findProducts(params.id, {
       where: query,
       select: {
-        category: {
-          select: {
-            id: true,
-          },
-        },
-
         createdAt: true,
         id: true,
-
-        product: {
-          select: {
-            id: true,
-          },
-        },
-
+        productName: true,
         updatedAt: true,
       },
     });
@@ -307,19 +295,19 @@ export class ProductCategoryControllerBase {
     defaultAuthGuard.DefaultAuthGuard,
     nestAccessControl.ACGuard
   )
-  @common.Post("/:id/categoryOnProducts")
+  @common.Post("/:id/products")
   @nestAccessControl.UseRoles({
     resource: "ProductCategory",
     action: "update",
     possession: "any",
   })
-  async createCategoryOnProducts(
+  async createProducts(
     @common.Param() params: ProductCategoryWhereUniqueInput,
     @common.Body() body: ProductCategoryWhereUniqueInput[],
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<void> {
     const data = {
-      categoryOnProducts: {
+      products: {
         connect: body,
       },
     };
@@ -352,19 +340,19 @@ export class ProductCategoryControllerBase {
     defaultAuthGuard.DefaultAuthGuard,
     nestAccessControl.ACGuard
   )
-  @common.Patch("/:id/categoryOnProducts")
+  @common.Patch("/:id/products")
   @nestAccessControl.UseRoles({
     resource: "ProductCategory",
     action: "update",
     possession: "any",
   })
-  async updateCategoryOnProducts(
+  async updateProducts(
     @common.Param() params: ProductCategoryWhereUniqueInput,
     @common.Body() body: ProductCategoryWhereUniqueInput[],
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<void> {
     const data = {
-      categoryOnProducts: {
+      products: {
         set: body,
       },
     };
@@ -397,19 +385,19 @@ export class ProductCategoryControllerBase {
     defaultAuthGuard.DefaultAuthGuard,
     nestAccessControl.ACGuard
   )
-  @common.Delete("/:id/categoryOnProducts")
+  @common.Delete("/:id/products")
   @nestAccessControl.UseRoles({
     resource: "ProductCategory",
     action: "update",
     possession: "any",
   })
-  async deleteCategoryOnProducts(
+  async deleteProducts(
     @common.Param() params: ProductCategoryWhereUniqueInput,
     @common.Body() body: ProductCategoryWhereUniqueInput[],
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<void> {
     const data = {
-      categoryOnProducts: {
+      products: {
         disconnect: body,
       },
     };

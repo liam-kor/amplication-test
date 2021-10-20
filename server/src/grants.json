@@ -118,35 +118,5 @@
     "resource": "ProductCategory",
     "action": "read:any",
     "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CategoryOnProduct",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CategoryOnProduct",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CategoryOnProduct",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CategoryOnProduct",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CategoryOnProduct",
-    "action": "read:any",
-    "attributes": "*"
   }
 ]

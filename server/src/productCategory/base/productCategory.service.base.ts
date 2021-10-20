@@ -1,5 +1,5 @@
 import { PrismaService } from "nestjs-prisma";
-import { Prisma, ProductCategory, CategoryOnProduct } from "@prisma/client";
+import { Prisma, ProductCategory, Product } from "@prisma/client";
 
 export class ProductCategoryServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -36,14 +36,14 @@ export class ProductCategoryServiceBase {
     return this.prisma.productCategory.delete(args);
   }
 
-  async findCategoryOnProducts(
+  async findProducts(
     parentId: string,
-    args: Prisma.CategoryOnProductFindManyArgs
-  ): Promise<CategoryOnProduct[]> {
+    args: Prisma.ProductFindManyArgs
+  ): Promise<Product[]> {
     return this.prisma.productCategory
       .findUnique({
         where: { id: parentId },
       })
-      .categoryOnProducts(args);
+      .products(args);
   }
 }
